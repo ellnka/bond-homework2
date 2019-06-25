@@ -49,13 +49,15 @@ function Unit(name) {
             _health = 0;
         }
 
-        // this.earnExperience(this.pointsXP.damage);   // I'm not a gamer... but why should it earn xp for taking damage?
+        // _earnExperience(this.pointsXP.damage);   // I'm not a gamer... but why should it earn xp for taking damage?
         return damagePoints;
     };
 
     this.earnExperience = function(value) {
         _xp += value;
-        _xp -= (_level > 1) ? (_xp / _level) * 0.1 : 0;
+        if (_level > 1) {
+            _xp -= (_xp / _level) * 0.1;
+        }
 
         while (_xp / _level / _XP_PER_LEVEL >= 1) {
             _levelUp.call(this);
@@ -68,7 +70,7 @@ function Unit(name) {
             power += stdPower * _level * 0.1;
         }
         return power;
-    }
+    };
 
     const _levelUp = function() {
         _level++;
