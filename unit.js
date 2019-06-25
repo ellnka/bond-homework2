@@ -59,7 +59,7 @@ function Unit(name) {
             _xp -= (_xp / _level) * 0.1;
         }
 
-        while (_xp / _level / _XP_PER_LEVEL >= 1) {
+        if (_xp / _level / _XP_PER_LEVEL >= 1) {
             _levelUp.call(this);
         }
     };
